@@ -1,4 +1,6 @@
-Personal site for journaling, documenting, learning
+Journal || Scrapbook || Whiteboard || Mind Dump
+
+A personal site for journaling, documenting, learning
 
 Work in progress
 
