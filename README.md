@@ -1,4 +1,4 @@
-Journal || Scrapbook || Whiteboard || Mind Dump
+# Journal || Scrapbook || Whiteboard || Mind Dump
 
 A personal site for journaling, documenting, learning
 
@@ -19,9 +19,7 @@ Platform / Playground for expanding dev skills
     - Cypress
     - API / DB for media
 
-# je-journal
-
-This template should help get you started developing with Vue 3 in Vite.
+# Begin create-vue boilerplate
 
 ## Recommended IDE Setup
 
