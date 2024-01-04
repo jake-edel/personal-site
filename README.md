@@ -1,3 +1,22 @@
+Personal site for journaling, documenting, learning
+
+Work in progress
+
+Ideas include...
+    - Logs for writing
+    - Reading list
+    - Photo album
+    - Quotes / Snippets
+    - Links to useful / interesting resources
+    - Playground for web development
+
+Platform / Playground for expanding dev skills
+    - Vue
+    - Typescript
+    - Jest
+    - Cypress
+    - API / DB for media
+
 # je-journal
 
 This template should help get you started developing with Vue 3 in Vite.
