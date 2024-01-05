@@ -9,80 +9,61 @@ import SupportIcon from './icons/IconSupport.vue'
 
 <template>
   <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
-    <template #heading>Documentation</template>
-
-    Vue’s
-    <a href="https://vuejs.org/" target="_blank" rel="noopener">official documentation</a>
-    provides you with all information you need to get started.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <ToolingIcon />
-    </template>
-    <template #heading>Tooling</template>
-
-    This project is served and bundled with
-    <a href="https://vitejs.dev/guide/features.html" target="_blank" rel="noopener">Vite</a>. The
-    recommended IDE setup is
-    <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">VSCode</a> +
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank" rel="noopener">Volar</a>. If
-    you need to test your components and web pages, check out
-    <a href="https://www.cypress.io/" target="_blank" rel="noopener">Cypress</a> and
-    <a href="https://on.cypress.io/component" target="_blank" rel="noopener"
-      >Cypress Component Testing</a
-    >.
-
-    <br />
-
-    More instructions are available in <code>README.md</code>.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <EcosystemIcon />
-    </template>
-    <template #heading>Ecosystem</template>
-
-    Get official tools and libraries for your project:
-    <a href="https://pinia.vuejs.org/" target="_blank" rel="noopener">Pinia</a>,
-    <a href="https://router.vuejs.org/" target="_blank" rel="noopener">Vue Router</a>,
-    <a href="https://test-utils.vuejs.org/" target="_blank" rel="noopener">Vue Test Utils</a>, and
-    <a href="https://github.com/vuejs/devtools" target="_blank" rel="noopener">Vue Dev Tools</a>. If
-    you need more resources, we suggest paying
-    <a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">Awesome Vue</a>
-    a visit.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <CommunityIcon />
-    </template>
-    <template #heading>Community</template>
-
-    Got stuck? Ask your question on
-    <a href="https://chat.vuejs.org" target="_blank" rel="noopener">Vue Land</a>, our official
-    Discord server, or
-    <a href="https://stackoverflow.com/questions/tagged/vue.js" target="_blank" rel="noopener"
-      >StackOverflow</a
-    >. You should also subscribe to
-    <a href="https://news.vuejs.org" target="_blank" rel="noopener">our mailing list</a> and follow
-    the official
-    <a href="https://twitter.com/vuejs" target="_blank" rel="noopener">@vuejs</a>
-    twitter account for latest news in the Vue world.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <SupportIcon />
-    </template>
-    <template #heading>Support Vue</template>
-
-    As an independent project, Vue relies on community backing for its sustainability. You can help
-    us by
-    <a href="https://vuejs.org/sponsor/" target="_blank" rel="noopener">becoming a sponsor</a>.
+	<template #icon>
+	  <DocumentationIcon />
+	</template>
+	<template #heading>What are we doing here?</template>
+	<p>
+	  A personal site for journaling, putting thoughts to paper (so to speak).
+	  I'm told that journaling is a good habit to develop, that it's healthy to
+	  write your thoughts out, and helps develop the skill of writing. I tend
+	  to do a lot of thinking. Not necessarily very insightful or deep. Just
+	  a lot of thinking.
+	</p>
+	<p>
+	  I had been kicking around the idea of a personal site for a while,
+	  for a number of reasons. 
+	</p>
+	<ul>
+		<li>
+			It seems standard practice to developers to
+			have a site to present their portfolio, contact info, demonstrate a general
+			interest in software development, to act as a type of digital business card
+			for potential employers.
+		</li>
+		<li>
+			It would be nice to have a personal workspace to play around with development
+			outside of the day job. Just getting to work on something different and a good
+			medium for continuous learning. I tend to be focused on this quite a lot, because I
+			have a chip on my shoulder about not having a formal education in software development.
+		</li>
+		<li>
+			I had decided to start journaling again to hopefully get some thoughts out and clear my head.
+			I had played around with journaling in the past but the habit never stuck. I've read it's a good
+			habit to get in to, and lately I've been concerned with cultivating every good habit I can.
+		</li>
+	</ul>
+	<p>
+		Ultiamtely, the desire to write and get my thoughts out was the tipping point in the creation of
+		this site. Writing in a notebook didn't stick, and my handwriting is terrible. I don't take great
+		pleasure in the physical act of writing as much as I do typing. And given that I work as a web developer,
+		and had been playing around with the idea of personal site, it made sense to use this as a medium to get
+		ideas out.
+	</p>
+	<p>
+		Also, I regularly wake up in the middle of the night with an extremely active mind. So I'm hoping that
+		writing will help get some thoughts out, tire the mind, force some introspection, and ultimately help
+		quite things a bit.
+	</p>
+	<p>
+		It's 5:15 am on Friday, January 5th, 2024, and I've been up since 2:30 am. So perhaps time to sgn off and
+		hopefully find some rest before work tomorrow. At least its friday.
+	</p>
   </WelcomeItem>
 </template>
+
+<style scoped>
+p {
+  margin-top: 16px;
+}
+</style>
