@@ -1,14 +1,14 @@
 <template>
 	<div>
 		<p>
-		A personal site for journaling, putting thoughts to paper (so to speak).
-		I'm told that writing is a good habit to develop, that it's healthy to
-		get your thoughts out. I tend to do a lot of thinking. Not necessarily
-		very insightful or deep. Just a lot of thinking.
+			A personal site for journaling, putting thoughts to paper (so to speak).
+			I'm told that writing is a good habit to develop, that it's healthy to
+			get your thoughts out. I tend to do a lot of thinking. Not necessarily
+			very insightful or deep. Just a lot of thinking.
 		</p>
 		<p>
-		I had been kicking around the idea of a personal site for a while,
-		for a number of reasons. 
+			I had been kicking around the idea of a personal site for a while,
+			for a number of reasons. 
 		</p>
 		<ul>
 			<li>
