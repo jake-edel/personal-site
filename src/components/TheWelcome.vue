@@ -1,18 +1,11 @@
 <script setup lang="ts">
 import WelcomeItem from './WelcomeItem.vue'
-import DocumentationIcon from './icons/IconDocumentation.vue'
-import ToolingIcon from './icons/IconTooling.vue'
-import EcosystemIcon from './icons/IconEcosystem.vue'
-import CommunityIcon from './icons/IconCommunity.vue'
-import SupportIcon from './icons/IconSupport.vue'
 </script>
 
 <template>
   <WelcomeItem>
-	<template #icon>
-	  <DocumentationIcon />
-	</template>
 	<template #heading>What are we doing here?</template>
+	<template #timestamp>January 5th, 2024</template>
 	<p>
 	  A personal site for journaling, putting thoughts to paper (so to speak).
 	  I'm told that writing is a good habit to develop, that it's healthy to
