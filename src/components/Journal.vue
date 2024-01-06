@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import WelcomeItem from './WelcomeItem.vue'
+import JournalPost from './JournalPost.vue'
 </script>
 
 <template>
-  <WelcomeItem>
+  <JournalPost>
 	<template #heading>What are we doing here?</template>
 	<template #timestamp>January 5th, 2024</template>
 	<p>
@@ -52,7 +52,7 @@ import WelcomeItem from './WelcomeItem.vue'
 		It's 5:15 am on Friday, January 5th, 2024, and I've been up since 2:30 am. So perhaps time to sign off and
 		hopefully find some rest before work tomorrow. At least its friday.
 	</p>
-  </WelcomeItem>
+  </JournalPost>
 </template>
 
 <style scoped>
