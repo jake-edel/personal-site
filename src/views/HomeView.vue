@@ -4,6 +4,6 @@ import Journal from '../components/Journal.vue'
 
 <template>
   <main>
-    <Journal />
+    <Journal/>
   </main>
 </template>
