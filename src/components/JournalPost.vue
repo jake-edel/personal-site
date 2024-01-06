@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import { defineAsyncComponent } from 'vue';
+
+const props = defineProps<{
+  postName: string
+}>()
+
+const PostContent = defineAsyncComponent(() => import(`./posts/${props.postName}.vue`))
+</script>
+
 <template>
 	<div class="item">
 		<div class="details">
@@ -6,6 +16,7 @@
 			</h3>
 			<slot name="timestamp"></slot>
 			<slot></slot>
+			<component :is="PostContent"></component>
 		</div>
 	</div>
 </template>
