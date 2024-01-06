@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import AppTitle from './components/AppTitle.vue'
 </script>
 
 <template>
   <header>
     <div class="wrapper">
-      <HelloWorld msg="Jakob's Journal" />
+      <AppTitle msg="Jakob's Journal" />
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
