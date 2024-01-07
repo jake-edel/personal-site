@@ -1,20 +1,27 @@
 <script setup lang="ts">
-import { defineAsyncComponent } from 'vue';
+import { defineAsyncComponent, reactive } from 'vue';
+const PostContent = defineAsyncComponent(() => import(`./posts/${postName}.vue`))
+
+interface PostConfig {
+	postName: string
+	title: string,
+	timestamp: string
+}
 
 const props = defineProps<{
-  postConfig: Object
+  postConfig: PostConfig
 }>()
+const { title, timestamp, postName} = props.postConfig
 
-const PostContent = defineAsyncComponent(() => import(`./posts/${props.postConfig.postName}.vue`))
 </script>
 
 <template>
 	<div class="item">
 		<div class="details">
 			<h3>
-				{{ postConfig.title }}
+				{{ title }}
 			</h3>
-			<p>{{ postConfig.timestamp }}</p>
+			<p>{{ timestamp }}</p>
 			<component :is="PostContent"></component>
 		</div>
 	</div>
