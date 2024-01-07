@@ -1,16 +1,20 @@
 <script setup lang="ts">
 import JournalPost from './JournalPost.vue'
 
-const postConfig = {
-	postName: 'WhatAreWeDoingHere',
-	title: 'What are we doing here?',
-	timestamp: '5:15am | January 5th, 2024'
-}
+const postConfig = [
+	{
+		postName: 'WhatAreWeDoingHere',
+		title: 'What are we doing here?',
+		timestamp: '5:15am | January 5th, 2024'
+	}
+]
 
 </script>
 
 <template>
-	<JournalPost :postConfig="postConfig" :postName="'WhatAreWeDoingHere'"/>
+	<div v-for="post in postConfig">
+		<JournalPost :postConfig="post" :postName="'WhatAreWeDoingHere'"/>
+	</div>
 </template>
 
 <style scoped>
