@@ -2,20 +2,19 @@
 import { defineAsyncComponent } from 'vue';
 
 const props = defineProps<{
-  postName: string
+  postConfig: Object
 }>()
 
-const PostContent = defineAsyncComponent(() => import(`./posts/${props.postName}.vue`))
+const PostContent = defineAsyncComponent(() => import(`./posts/${props.postConfig.postName}.vue`))
 </script>
 
 <template>
 	<div class="item">
 		<div class="details">
 			<h3>
-				<slot name="heading"></slot>
+				{{ postConfig.title }}
 			</h3>
-			<slot name="timestamp"></slot>
-			<slot></slot>
+			<p>{{ postConfig.timestamp }}</p>
 			<component :is="PostContent"></component>
 		</div>
 	</div>
