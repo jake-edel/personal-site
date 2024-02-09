@@ -1,4 +1,6 @@
-const postConfig = [
+export module postConfigs {
+
+[
 	{
 		postName: 'WhatAreWeDoingHere',
 		title: 'What are we doing here?',
@@ -16,6 +18,8 @@ const postConfig = [
 	}
 ]
 
-declare module 'postConfigs' {
-	export default postConfig
+// declare module 'postConfigs' {
+// 	export default postConfig
+// }
+
 }
