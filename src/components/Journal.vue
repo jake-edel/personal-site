@@ -1,12 +1,9 @@
-<script setup lang="ts">
+<script setup>
 import JournalPost from './JournalPost.vue'
-import { postConfigs } from '@/data/postConfigs.js'
-import { test } from '@/data/test'
+import { postConfigs } from '@/data/postConfig.ts'
 </script>
 
 <template>
-	{{  postConfigs }}
-	{{  test }}
 	<div v-for="post in postConfigs">
 		<JournalPost :postConfig="post"/>
 	</div>
