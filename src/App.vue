@@ -4,19 +4,25 @@ import AppTitle from './components/AppTitle.vue'
 </script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <AppTitle msg="Jakob's Journal" />
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-  <RouterView />
+  <div id="app-wrapper">
+    <header>
+      <div>
+        <AppTitle msg="Jakob's Journal" />
+        <nav>
+          <RouterLink to="/">Home</RouterLink>
+          <RouterLink to="/about">About</RouterLink>
+        </nav>
+      </div>
+    </header>
+    <RouterView />
+  </div>
 </template>
 
 <style scoped>
+#app-wrapper {
+  margin: 0 5% 0 5%;
+}
+
 nav {
   width: 100%;
   font-size: 16px;
