@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { RouterLink } from 'vue-router'
 </script>
 
@@ -14,7 +14,7 @@ nav {
   width: 100%;
   font-size: 16px;
   text-align: center;
-  text-decoration:none;
+  text-decoration: none;
 }
 
 nav a.router-link-exact-active {
