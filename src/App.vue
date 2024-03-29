@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 import AppTitle from './components/AppTitle.vue'
+import NavBar from './components/NavBar.vue'
 </script>
 
 <template>
@@ -8,10 +9,7 @@ import AppTitle from './components/AppTitle.vue'
     <header>
       <div>
         <AppTitle msg="Jakob's Journal" />
-        <nav>
-          <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/about">About</RouterLink>
-        </nav>
+        <NavBar/>
       </div>
     </header>
     <RouterView />
@@ -21,28 +19,5 @@ import AppTitle from './components/AppTitle.vue'
 <style scoped>
 #app-wrapper {
   margin: 0 5% 0 5%;
-}
-
-nav {
-  width: 100%;
-  font-size: 16px;
-  text-align: center;
-  text-decoration:none;
-}
-
-nav a.router-link-exact-active {
-  color: hsla(160, 100%, 37%, 1);
-  text-decoration: none;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0px 16px 0px 16px;
-  border-left: 1px solid var(--color-border);
-  text-decoration: none;
-}
-
-nav a:first-of-type {
-  border: 0;
 }
 </style>
