@@ -4,7 +4,7 @@ interface PostConfig {
 	timestamp: String
 }
 
-export const postConfigs: Array<PostConfig> = [
+export default const postConfigs: Array<PostConfig> = [
 	{
 		postName: 'WhatAreWeDoingHere',
 		title: 'What are we doing here?',
