@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineAsyncComponent, reactive } from 'vue';
+import { defineAsyncComponent } from 'vue'
 const PostContent = defineAsyncComponent(() => import(`./posts/${postName}.vue`))
 
 interface PostConfig {
