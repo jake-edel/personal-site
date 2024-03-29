@@ -1,5 +1,5 @@
 <script setup>
-import JournalPost from './JournalPost.vue'
+import JournalPost from '../components/JournalPost.vue'
 import { postConfigs } from '@/data/postConfig.ts'
 </script>
 
