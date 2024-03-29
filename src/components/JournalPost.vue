@@ -1,12 +1,7 @@
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue'
+import type { PostConfig } from '@/data/postConfig';
 const PostContent = defineAsyncComponent(() => import(`./posts/${postName}.vue`))
-
-interface PostConfig {
-	postName: string
-	title: string,
-	timestamp: string
-}
 
 const props = defineProps<{
   postConfig: PostConfig

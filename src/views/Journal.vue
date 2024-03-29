@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import JournalPost from '../components/JournalPost.vue'
-import postConfigs from '@/data/postConfig'
+import { postConfigs } from '@/data/postConfig'
 </script>
 
 <template>
