@@ -28,7 +28,9 @@ async function insertRow(data: string) {
 	getTable()
 }
 
-async function deleteLastRow(id: number) {
+async function deleteLastRow(id: number | undefined) {
+	if (id === undefined) return
+
 	const response = await fetch('http://localhost:3001/',{
 		method: 'DELETE',
 		headers: {
@@ -47,7 +49,7 @@ async function deleteLastRow(id: number) {
 	<div>
 		<button @click="getTable">Get Data</button><br>
 		<button @click="insertRow(newRow)">Create Row</button><input v-model="newRow"><br>
-		<button @click="deleteLastRow(table.data[table.data.length -1].id)">Delete Row</button>
+		<button @click="deleteLastRow(table?.data[table.data.length -1].id)">Delete Row</button>
 		<table>
 			<th>
 				<td>ID</td>
