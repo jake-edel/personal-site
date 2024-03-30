@@ -10,7 +10,4 @@ import { postConfigs } from '@/data/postConfig'
 </template>
 
 <style scoped>
-p {
-  margin-top: 16px;
-}
 </style>

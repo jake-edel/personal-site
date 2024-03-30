@@ -11,29 +11,14 @@ const { title, timestamp, postName} = props.postConfig
 </script>
 
 <template>
-	<div class="item">
-		<div class="details">
-			<h3>
-				{{ title }}
-			</h3>
-			<p>{{ timestamp }}</p>
-			<component :is="PostContent"></component>
-		</div>
-	</div>
+	<h3>
+		{{ title }}
+	</h3>
+	<p>{{ timestamp }}</p>
+	<component :is="PostContent"></component>
 </template>
 
 <style scoped>
-.item {
-	margin-top: 2rem;
-	display: flex;
-	position: relative;
-}
-
-.details {
-	flex: 1;
-	margin-left: 1rem;
-}
-
 h3 {
 	font-size: 1.2rem;
 	font-weight: 500;
