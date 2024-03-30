@@ -15,7 +15,7 @@ const getTable = () => fetch('http://localhost:3001/')
 	.then(response => response.json())
 	.then(json => table.value = json)
 
-
+const rowInput = ref()
 async function insertRow(data: string) {
 	if (data === '') return
 
@@ -26,7 +26,9 @@ async function insertRow(data: string) {
 		},
 		body: JSON.stringify({ data })
 	})
-	console.log((await response).json())
+	console.log(await response.json())
+	newRow.value = ''
+	rowInput.value.focus()
 	getTable()
 }
 
@@ -40,7 +42,7 @@ async function deleteLastRow(id: number | undefined) {
 		},
 		body: JSON.stringify({ id })
 	})
-	console.log((await response).json())
+	console.log(await response.json())
 	getTable()
 	}
 
@@ -49,9 +51,18 @@ async function deleteLastRow(id: number | undefined) {
 
 <template>
 	<div>
-		<button @click="getTable">Get Data</button><br>
-		<button @click="insertRow(newRow)">Create Row</button><input v-model="newRow"><br>
-		<button @click="deleteLastRow(table?.data[table.data.length -1].id)">Delete Row</button>
+		<button @click="getTable">
+			Get Data
+		</button>
+		<br>
+		<button @click="insertRow(newRow)">
+			Create Row
+		</button>
+		<input v-model="newRow" ref="rowInput">
+		<br>
+		<button @click="deleteLastRow(table?.data[table.data.length -1].id)">
+			Delete Row
+		</button>
 		<table>
 			<th>
 				<td>ID</td>
