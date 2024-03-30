@@ -17,6 +17,8 @@ const getTable = () => fetch('http://localhost:3001/')
 
 
 async function insertRow(data: string) {
+	if (data === '') return
+
 	const response = await fetch('http://localhost:3001/',{
 		method: 'POST',
 		headers: {
