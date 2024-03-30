@@ -1,20 +1,16 @@
 <script setup lang="ts">
-
 async function fetchTableThen() {
 	const response = fetch('http://localhost:3001/')
 		.then(response => response.json())
 		.then(json => json)
-
-	return response
+	console.log(await response)
 }
-console.log('fetchTableThen: ', await fetchTableThen())
 
 async function fetchTableAwait() {
 	const response = await fetch('http://localhost:3001/')
 	const json = await response.json()
-	return json
+	console.log(json)
 }
-console.log('fetchTableAwait: ', await fetchTableAwait())
 
 </script>
 
