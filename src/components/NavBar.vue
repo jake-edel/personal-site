@@ -9,6 +9,10 @@ const routes = [
   {
     name: 'About',
     path: '/about'
+  },
+  {
+    name: 'API Test',
+    path: '/dbTest'
   }
 ]
 </script>
