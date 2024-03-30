@@ -1,22 +1,16 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from 'vue'
 
-// async function fetchTableThen() {
-// 	const response = fetch('http://localhost:3001/')
-// 	// const response = fetch('http://127.0.0.1:3001/') <= how to get this to work?
-// 		.then(response => response.json())
-// 		.then(json => json)
-// 	console.log(await response)
-// }
+interface Row {
+	id: number
+	data: string
+}
 
-// async function fetchTableAwait() {
-// 	const response = await fetch('http://localhost:3001/')
-// 	// const response = await fetch('http://127.0.0.1:3001/') <= how to get this to work?
-// 	const json = await response.json()
-// 	console.log(json)
-// }
+interface APIResponse {
+	data: Array<Row>
+}
+const table = ref<APIResponse | undefined>()
 
-const table = ref(null)
 const getTable = () => fetch('http://localhost:3001/')
 	.then(response => response.json())
 	.then(json => table.value = json)
