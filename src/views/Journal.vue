@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import JournalPost from '../components/JournalPost.vue'
-import postConfigs from '@/data/postConfig'
+import { postConfigs } from '@/data/postConfig'
 </script>
 
 <template>
@@ -10,7 +10,4 @@ import postConfigs from '@/data/postConfig'
 </template>
 
 <style scoped>
-p {
-  margin-top: 16px;
-}
 </style>

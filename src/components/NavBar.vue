@@ -1,11 +1,29 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+
+const routes = [
+  {
+    name: 'Journal',
+    path: '/journal'
+  },
+  {
+    name: 'About',
+    path: '/about'
+  },
+  {
+    name: 'API Test',
+    path: '/dbTest'
+  }
+]
 </script>
 
 <template>
 	<nav>
-		<RouterLink to="/journal">Home</RouterLink>
-		<RouterLink to="/about">About</RouterLink>
+    <RouterLink v-for="route in routes"
+      :to="route.path"
+      :key="route.name">
+      {{ route.name }}
+    </RouterLink>
 	</nav>
 </template>
 
@@ -13,7 +31,6 @@ import { RouterLink } from 'vue-router'
 nav {
   width: 100%;
   font-size: 16px;
-  text-align: center;
   text-decoration: none;
 }
 
