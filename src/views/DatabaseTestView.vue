@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, reactive, computed } from 'vue'
 
 interface Row {
 	id: number
@@ -9,11 +9,13 @@ interface Row {
 interface APIResponse {
 	data: Array<Row>
 }
-const table = ref<APIResponse | undefined>()
+
+const table: APIResponse = reactive({ data: [] })
+const lastElementId = computed(() => table?.data[table.data.length - 1].id)
 
 const getTable = () => fetch('http://localhost:3001/')
 	.then(response => response.json())
-	.then(json => table.value = json)
+	.then(json => table.data = json)
 
 const rowInput = ref()
 async function insertRow(data: string) {
@@ -46,7 +48,7 @@ async function deleteLastRow(id: number | undefined) {
 	getTable()
 	}
 
-	const newRow = ref('')
+const newRow = ref('')
 </script>
 
 <template>
@@ -60,7 +62,7 @@ async function deleteLastRow(id: number | undefined) {
 		</button>
 		<input v-model="newRow" ref="rowInput">
 		<br>
-		<button @click="deleteLastRow(table?.data[table.data.length -1].id)">
+		<button @click="deleteLastRow(lastElementId)">
 			Delete Row
 		</button>
 		<table>
