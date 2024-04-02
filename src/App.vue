@@ -7,7 +7,7 @@ import NavBar from './components/NavBar.vue'
 <template>
   <header>
     <div>
-      <AppTitle msg="Jakob's Journal" />
+      <AppTitle msg="Jakob's Site" />
       <NavBar/>
     </div>
   </header>
