@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { ref, reactive, computed } from 'vue'
+import {
+	ref, 
+	reactive,
+	computed,
+	onMounted } from 'vue'
 
 interface Row {
 	id: number
@@ -7,34 +11,52 @@ interface Row {
 }
 
 interface APIResponse {
+	status: string
 	data: Array<Row>
+	length: number
+	controller: string
+}
+const defaultResponse = {
+	status: '',
+	data: [],
+	length: 0,
+	controller: ''
+
 }
 
-const table: APIResponse = reactive({ data: [] })
-const lastElementId = computed(() => table?.data[table.data.length - 1].id)
 
-const getTable = () => fetch('http://localhost:3001/')
-	.then(response => response.json())
-	.then(json => table.data = json.data)
+
+onMounted(getTable)
+const table: APIResponse = reactive(defaultResponse)
+function getTable() {
+	fetch('http://localhost:3001/')
+		.then(response => response.json())
+		.then(json => table.data = json.data)
+}
 
 const rowInput = ref()
 const newRowData = ref('')
 async function insertRow(data: string) {
 	if (data === '') return
 
-	const response = await fetch('http://localhost:3001/',{
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({ data })
-	})
-	console.log(await response.json())
-	newRowData.value = ''
-	rowInput.value.focus()
-	getTable()
+	try {
+		const response = await fetch('http://localhost:3001/',{
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ data })
+		})
+		console.log(await response.json())
+		newRowData.value = ''
+		rowInput.value.focus()
+		getTable()
+	} catch (error) {
+		console.error(error)
+	}
 }
 
+const lastElementId = computed(() => table?.data[table.data.length - 1].id)
 async function deleteLastRow(id: number | undefined) {
 	if (id === undefined) return
 
@@ -49,9 +71,11 @@ async function deleteLastRow(id: number | undefined) {
 	getTable()
 }
 
-const editElementId = ref(0)
-const editElementValue = ref('')
-async function updateRow(id: number | string , data: string) {
+// Input type="number" is going to be a empty string when input is empty
+type NumberInput = number | string
+const updatedElementId = ref(0)
+const updatedElementValue = ref('')
+async function updateRow(id: NumberInput , data: string) {
 	if (id === '' || data === '') return
 
 	const response = await fetch('http://localhost:3001/',{
@@ -65,28 +89,43 @@ async function updateRow(id: number | string , data: string) {
 	getTable()
 }
 
+let retrievedRow:Row = reactive({ id: 0, data: '' })
+const gotElementId = ref<NumberInput>(0)
+async function getRow(id: NumberInput) {
+	if (id === '') return
+	
+	const response = await fetch(`http://localhost:3001/${id}`, {
+		method: 'GET'
+	})
+	const retrievedData:APIResponse = await response.json()
+	console.log(retrievedData)
+	retrievedRow = retrievedData.data[0]
+	getTable()
+}
 </script>
 
 <template>
 	<div>
-		<button @click="getTable">
-			Get Data
-		</button>
-		<br>
 		<button @click="insertRow(newRowData)">
 			Create Row
 		</button>
 		<input v-model="newRowData" ref="rowInput">
 		<br>
-		<button @click="deleteLastRow(lastElementId)">
-			Delete Row
-		</button><br>
-		<button @click="updateRow(editElementId, editElementValue)">
+		<button @click="getRow(gotElementId)">
+			Read Row
+		</button>
+		<input v-model="gotElementId">
+		| {{ retrievedRow.data }} |
+		<br>
+		<button @click="updateRow(updatedElementId, updatedElementValue)">
 			Update Row
 		</button>
-		<input v-model="editElementId" type="number">
-		<input v-model="editElementValue">
-
+		<input v-model="updatedElementId" type="number">
+		<input v-model="updatedElementValue">
+		<br>
+		<button @click="deleteLastRow(lastElementId)">
+			Delete Row
+		</button>
 		<table>
 			<th>
 				<td>ID</td>
