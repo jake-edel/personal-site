@@ -24,12 +24,10 @@ const defaultResponse = {
 
 }
 
-
-
 onMounted(getTable)
 const table: APIResponse = reactive(defaultResponse)
 function getTable() {
-	fetch('http://localhost:3001/')
+	fetch('http://localhost:3001/testTable')
 		.then(response => response.json())
 		.then(json => table.data = json.data)
 }
@@ -40,7 +38,7 @@ async function insertRow(data: string) {
 	if (data === '') return
 
 	try {
-		const response = await fetch('http://localhost:3001/',{
+		const response = await fetch('http://localhost:3001/testTable',{
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -60,7 +58,7 @@ const lastElementId = computed(() => table?.data[table.data.length - 1].id)
 async function deleteLastRow(id: number | undefined) {
 	if (id === undefined) return
 
-	const response = await fetch('http://localhost:3001/',{
+	const response = await fetch('http://localhost:3001/testTable',{
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json'
@@ -78,7 +76,7 @@ const updatedElementValue = ref('')
 async function updateRow(id: NumberInput , data: string) {
 	if (id === '' || data === '') return
 
-	const response = await fetch('http://localhost:3001/',{
+	const response = await fetch('http://localhost:3001/testTable',{
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json'
@@ -94,7 +92,7 @@ const gotElementId = ref<NumberInput>(0)
 async function getRow(id: NumberInput) {
 	if (id === '') return
 	
-	const response = await fetch(`http://localhost:3001/${id}`, {
+	const response = await fetch(`http://localhost:3001/testTable/${id}`, {
 		method: 'GET'
 	})
 	const retrievedData:APIResponse = await response.json()
@@ -105,32 +103,39 @@ async function getRow(id: NumberInput) {
 </script>
 
 <template>
-	<div>
-		<button @click="insertRow(newRowData)">
-			Create Row
-		</button>
-		<input v-model="newRowData" ref="rowInput">
-		<br>
-		<button @click="getRow(gotElementId)">
-			Read Row
-		</button>
-		<input v-model="gotElementId">
-		| {{ retrievedRow.data }} |
-		<br>
-		<button @click="updateRow(updatedElementId, updatedElementValue)">
-			Update Row
-		</button>
-		<input v-model="updatedElementId" type="number">
-		<input v-model="updatedElementValue">
-		<br>
-		<button @click="deleteLastRow(lastElementId)">
-			Delete Row
-		</button>
+	<div id="dbtest-container">
+		<div id="database-controls">
+			<button @click="insertRow(newRowData)">
+				Create Row
+			</button>
+			<input 
+				v-model="newRowData"
+				class="id-input"
+				ref="rowInput">
+			<button @click="getRow(gotElementId)">
+				Read Row
+			</button>
+			<input v-model="gotElementId">
+			| {{ retrievedRow.data }} |
+			<button @click="updateRow(updatedElementId, updatedElementValue)">
+				Update Row
+			</button>
+			<input
+				v-model="updatedElementId"
+				class="id-input"
+				type="number">
+			<input
+				class="data-input"
+				v-model="updatedElementValue">
+			<button @click="deleteLastRow(lastElementId)">
+				Delete Last Row
+			</button>
+		</div>
 		<table>
-			<th>
-				<td>ID</td>
-				<td>Data</td>
-			</th>
+			<tr>
+				<th>ID</th>
+				<th>Data</th>
+			</tr>
 			<tr v-if="table" v-for="row in table.data">
 				<td>{{ row.id }}</td>
 				<td>{{ row.data }}</td>
@@ -140,4 +145,36 @@ async function getRow(id: NumberInput) {
 </template>
 
 <style scoped>
+#dbtest-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+#database-controls {
+	margin-bottom: 16px;
+	display: grid;
+	grid-template-columns: 128px 128px 128px;
+	gap: 8px;
+	background-color: hsla(160, 100%, 37%, 1);
+	border-radius: 8px;
+	padding: 8px;
+	width: fit-content;
+}
+
+button {
+	border: 5px red;
+	grid-column: 1
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+table, th, td {
+	border: 1px solid;
+}
+
+th, td {
+	padding: 8px;
+}
 </style>
