@@ -140,11 +140,11 @@ async function getRow(id: NumberInput) {
 	#database-controls {
 		margin-bottom: 16px;
 		display: grid;
-		grid-template-columns: 128px 128px 128px;
-		gap: 8px;
+		grid-template-columns: $spacing-xxl $spacing-xxl $spacing-xxl;
+		gap: $spacing-base;
 		background-color: hsla(160, 100%, 37%, 1);
 		border-radius: 8px;
-		padding: 8px;
+		padding: $spacing-base;
 		width: fit-content;
 		button {
 			grid-column: 1
@@ -155,7 +155,7 @@ async function getRow(id: NumberInput) {
 		width: 100%;
 		th, td {
 			border: 1px solid;
-			padding: 8px;
+			padding: $spacing-base;
 		}
 	}
 }
