@@ -1,34 +1,19 @@
 <script setup lang="ts">
 import type { APIResponse, Row } from '@/definitions/apiTypes'
-import { getTable, table } from '@/composables/useAPI';
+import { getTable, insertRow, table, newRowData } from '@/composables/useAPI';
 import {
 	ref, 
 	reactive,
 	computed,
-	onMounted } from 'vue'
+	onMounted
+} from 'vue'
 
 onMounted(() => { getTable() })
 
 const rowInput = ref()
-const newRowData = ref('')
-async function insertRow(data: string) {
-	if (data === '') return
-
-	try {
-		const response = await fetch('http://localhost:3001/testTable',{
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ data })
-		})
-		console.log(await response.json())
-		newRowData.value = ''
-		rowInput.value.focus()
-		getTable()
-	} catch (error) {
-		console.error(error)
-	}
+function insertData(data: string) {
+	insertRow(data)
+	rowInput.value.focus()
 }
 
 const lastElementId = computed(() => table?.data[table.data.length - 1].id)
@@ -93,7 +78,7 @@ async function getRow(id: NumberInput) {
 <template>
 	<div id="dbtest-container">
 		<div id="database-controls">
-			<button @click="insertRow(newRowData)">
+			<button @click="insertData(newRowData)">
 				Create Row
 			</button>
 			<input 
@@ -152,7 +137,6 @@ async function getRow(id: NumberInput) {
 	}
 	table {
 		border-collapse: collapse;
-		width: 100%;
 		th, td {
 			border: 1px solid;
 			padding: $spacing-base;

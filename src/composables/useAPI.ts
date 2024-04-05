@@ -1,4 +1,4 @@
-import { reactive } from 'vue'
+import { ref, reactive } from 'vue'
 import type { APIResponse } from '@/definitions/apiTypes'
 
 const defaultResponse = {
@@ -8,8 +8,8 @@ const defaultResponse = {
 	controller: ''
 }
 
-export const table: APIResponse = reactive(defaultResponse)
-export function getTable(): any {
+const table: APIResponse = reactive(defaultResponse)
+function getTable(): any {
 	try {
 		fetch('http://localhost:3001/testTable')
 			.then(response => response.json())
@@ -17,4 +17,31 @@ export function getTable(): any {
 	} catch (error) {
 		console.error(error)
 	}
+}
+
+const newRowData = ref()
+async function insertRow(data: string) {
+	if (!data) return
+
+	try {
+		const response = await fetch('http://localhost:3001/testTable',{
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ data })
+		})
+		console.log(await response.json())
+		newRowData.value = ''
+		getTable()
+	} catch (error) {
+		console.error(error)
+	}
+}
+
+export {
+	getTable,
+	table,
+	insertRow,
+	newRowData
 }
