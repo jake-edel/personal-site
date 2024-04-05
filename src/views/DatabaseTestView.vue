@@ -163,7 +163,6 @@ async function getRow(id: NumberInput) {
 }
 
 button {
-	border: 5px red;
 	grid-column: 1
 }
 
