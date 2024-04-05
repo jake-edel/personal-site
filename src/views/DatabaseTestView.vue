@@ -7,7 +7,7 @@ import {
 	computed,
 	onMounted } from 'vue'
 
-onMounted(getTable)
+onMounted(() => { getTable() })
 
 const rowInput = ref()
 const newRowData = ref('')

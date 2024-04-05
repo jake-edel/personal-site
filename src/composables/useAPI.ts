@@ -9,7 +9,7 @@ const defaultResponse = {
 }
 
 export const table: APIResponse = reactive(defaultResponse)
-export function getTable() {
+export function getTable(): any {
 	try {
 		fetch('http://localhost:3001/testTable')
 			.then(response => response.json())
