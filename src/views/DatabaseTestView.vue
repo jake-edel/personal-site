@@ -1,40 +1,13 @@
 <script setup lang="ts">
+import type { APIResponse, Row } from '@/definitions/apiTypes'
+import { getTable, table } from '@/composables/useAPI';
 import {
 	ref, 
 	reactive,
 	computed,
 	onMounted } from 'vue'
 
-interface Row {
-	id: number
-	data: string
-}
-
-interface APIResponse {
-	status: string
-	data: Array<Row>
-	length: number
-	controller: string
-}
-const defaultResponse = {
-	status: '',
-	data: [],
-	length: 0,
-	controller: ''
-
-}
-
 onMounted(getTable)
-const table: APIResponse = reactive(defaultResponse)
-function getTable() {
-	try {
-		fetch('http://localhost:3001/testTable')
-			.then(response => response.json())
-			.then(json => table.data = json.data)
-	} catch (error) {
-		console.error(error)
-	}
-}
 
 const rowInput = ref()
 const newRowData = ref('')
