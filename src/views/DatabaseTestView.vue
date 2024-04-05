@@ -144,38 +144,31 @@ async function getRow(id: NumberInput) {
 	</div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 #dbtest-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-}
-
-#database-controls {
-	margin-bottom: 16px;
-	display: grid;
-	grid-template-columns: 128px 128px 128px;
-	gap: 8px;
-	background-color: hsla(160, 100%, 37%, 1);
-	border-radius: 8px;
-	padding: 8px;
-	width: fit-content;
-}
-
-button {
-	grid-column: 1
-}
-
-table {
-	border-collapse: collapse;
-	width: 100%;
-}
-
-table, th, td {
-	border: 1px solid;
-}
-
-th, td {
-	padding: 8px;
+	#database-controls {
+		margin-bottom: 16px;
+		display: grid;
+		grid-template-columns: 128px 128px 128px;
+		gap: 8px;
+		background-color: hsla(160, 100%, 37%, 1);
+		border-radius: 8px;
+		padding: 8px;
+		width: fit-content;
+		button {
+			grid-column: 1
+		}
+	}
+	table {
+		border-collapse: collapse;
+		width: 100%;
+		th, td {
+			border: 1px solid;
+			padding: 8px;
+		}
+	}
 }
 </style>
