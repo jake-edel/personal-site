@@ -12,7 +12,7 @@ defineProps<{
 
 <style scoped>
 .app-title {
-  font-size: 32px;
+  font-size: 24px;
   color: hsla(160, 100%, 37%, 1);
 }
 </style>

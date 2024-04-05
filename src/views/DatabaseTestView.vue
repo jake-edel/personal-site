@@ -150,6 +150,7 @@ async function getRow(id: NumberInput) {
 	flex-direction: column;
 	align-items: center;
 }
+
 #database-controls {
 	margin-bottom: 16px;
 	display: grid;
@@ -170,6 +171,7 @@ table {
 	border-collapse: collapse;
 	width: 100%;
 }
+
 table, th, td {
 	border: 1px solid;
 }
