@@ -27,9 +27,13 @@ const defaultResponse = {
 onMounted(getTable)
 const table: APIResponse = reactive(defaultResponse)
 function getTable() {
-	fetch('http://localhost:3001/testTable')
-		.then(response => response.json())
-		.then(json => table.data = json.data)
+	try {
+		fetch('http://localhost:3001/testTable')
+			.then(response => response.json())
+			.then(json => table.data = json.data)
+	} catch (error) {
+		console.error(error)
+	}
 }
 
 const rowInput = ref()
@@ -58,15 +62,19 @@ const lastElementId = computed(() => table?.data[table.data.length - 1].id)
 async function deleteLastRow(id: number | undefined) {
 	if (id === undefined) return
 
-	const response = await fetch('http://localhost:3001/testTable',{
-		method: 'DELETE',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({ id })
-	})
-	console.log(await response.json())
-	getTable()
+	try {
+		const response = await fetch('http://localhost:3001/testTable',{
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ id })
+		})
+		console.log(await response.json())
+		getTable()
+	} catch (error) {
+		console.error(error)
+	}
 }
 
 // Input type="number" is going to be a empty string when input is empty
@@ -76,29 +84,36 @@ const updatedElementValue = ref('')
 async function updateRow(id: NumberInput , data: string) {
 	if (id === '' || data === '') return
 
-	const response = await fetch('http://localhost:3001/testTable',{
-		method: 'PUT',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({ id, data })
-	})
-	console.log(await response.json())
-	getTable()
+	try {
+		const response = await fetch('http://localhost:3001/testTable',{
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ id, data })
+		})
+		console.log(await response.json())
+		getTable()
+	} catch (error) {
+		console.error(error)
+	}
 }
 
 let retrievedRow:Row = reactive({ id: 0, data: '' })
-const gotElementId = ref<NumberInput>(0)
+const readElementId = ref<NumberInput>(0)
 async function getRow(id: NumberInput) {
 	if (id === '') return
-	
-	const response = await fetch(`http://localhost:3001/testTable/${id}`, {
-		method: 'GET'
-	})
-	const retrievedData:APIResponse = await response.json()
-	console.log(retrievedData)
-	retrievedRow = retrievedData.data[0]
-	getTable()
+	try {
+		const response = await fetch(`http://localhost:3001/testTable/${id}`, {
+			method: 'GET'
+		})
+		const retrievedData:APIResponse = await response.json()
+		console.log(retrievedData)
+		retrievedRow = retrievedData.data[0]
+		getTable()
+	} catch (error) {
+		console.error
+	}
 }
 </script>
 
@@ -112,10 +127,10 @@ async function getRow(id: NumberInput) {
 				v-model="newRowData"
 				class="id-input"
 				ref="rowInput">
-			<button @click="getRow(gotElementId)">
+			<button @click="getRow(readElementId)">
 				Read Row
 			</button>
-			<input v-model="gotElementId">
+			<input v-model="readElementId" type="number">
 			| {{ retrievedRow.data }} |
 			<button @click="updateRow(updatedElementId, updatedElementValue)">
 				Update Row
