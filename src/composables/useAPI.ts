@@ -1,4 +1,4 @@
-import { ref, reactive } from 'vue'
+import { reactive } from 'vue'
 import type { APIResponse, Row } from '@/definitions/apiTypes'
 
 const defaultResponse = {
