@@ -11,7 +11,7 @@ const defaultResponse = {
 const tableName = 'test-table'
 
 const table: APIResponse = reactive(defaultResponse)
-function getTable(): any {
+function getTable(): void {
 	try {
 		fetch(`http://localhost:3001/${tableName}`)
 			.then(response => response.json())
@@ -21,7 +21,7 @@ function getTable(): any {
 	}
 }
 
-async function createData(data: string) {
+async function createData(data: string): Promise<void> {
 	if (!data) return
 
 	try {
@@ -40,7 +40,7 @@ async function createData(data: string) {
 }
 
 let retrievedData:Row = reactive({ id: 0, data: '' })
-async function readData(id: NumberInput) {
+async function readData(id: NumberInput): Promise<void> {
 	if (id === '') return
 	try {
 		const response = await fetch(`http://localhost:3001/${tableName}/${id}`, {
@@ -57,7 +57,7 @@ async function readData(id: NumberInput) {
 
 // Input type="number" is going to be a empty string when input is empty
 type NumberInput = number | string
-async function updateRow(id: NumberInput , data: string) {
+async function updateRow(id: NumberInput , data: string): Promise<void> {
 	if (id === '' || data === '') return
 
 	try {
@@ -75,7 +75,7 @@ async function updateRow(id: NumberInput , data: string) {
 	}
 }
 
-async function deleteRow(id: number | undefined) {
+async function deleteRow(id: number | undefined): Promise<void> {
 	if (id === undefined) return
 
 	try {
