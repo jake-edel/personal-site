@@ -1,27 +1,18 @@
 <script setup lang="ts">
-import {
-	getTable,
-	createData,
-	readData,
-	updateRow,
-	deleteRow,
-	retrievedData,
-	table
-} from '@/composables/useAPI';
+import * as api from '@/composables/useAPI'
 import type { Row } from '@/definitions/apiTypes';
 import {
 	ref, 
-	reactive,
 	computed,
 	onMounted
 } from 'vue'
 
-onMounted(() => { getTable() })
+onMounted(() => { api.getTable() })
 
 const rowInput = ref()
 const newRowData = ref()
 function createRow(data: string) {
-	createData(data)
+	api.createData(data)
 	newRowData.value = ''
 	rowInput.value.focus()
 }
@@ -29,7 +20,7 @@ function createRow(data: string) {
 type NumberInput = number | string
 const readElementId = ref<NumberInput>(0)
 
-const lastElementId = computed(() => table?.data[table.data.length - 1].id)
+const lastElementId = computed(() => api.table?.data[api.table.data.length - 1].id)
 
 const updatedElementId = ref(0)
 const updatedElementValue = ref('')
@@ -48,12 +39,12 @@ const updatedElementValue = ref('')
 				class="id-input"
 				ref="rowInput"
 				@keyup.enter="createRow(newRowData)">
-			<button @click="readData(readElementId)">
+			<button @click="api.readData(readElementId)">
 				Read Row
 			</button>
-			<input v-model="readElementId" @keyup.enter="readData(readElementId)" type="number">
-			| {{ retrievedData.data }} |
-			<button @click="updateRow(updatedElementId, updatedElementValue)">
+			<input v-model="readElementId" @keyup.enter="api.readData(readElementId)" type="number">
+			| {{ api.retrievedData.data }} |
+			<button @click="api.updateRow(updatedElementId, updatedElementValue)">
 				Update Row
 			</button>
 			<input
@@ -63,7 +54,7 @@ const updatedElementValue = ref('')
 			<input
 				class="data-input"
 				v-model="updatedElementValue">
-			<button @click="deleteRow(lastElementId)">
+			<button @click="api.deleteRow(lastElementId)">
 				Delete Last Row
 			</button>
 		</div>
@@ -72,7 +63,7 @@ const updatedElementValue = ref('')
 				<th>ID</th>
 				<th>Data</th>
 			</tr>
-			<tr v-if="table" v-for="row in table.data">
+			<tr v-if="api.table" v-for="row in api.table.data">
 				<td>{{ row.id }}</td>
 				<td>{{ row.data }}</td>
 			</tr>
