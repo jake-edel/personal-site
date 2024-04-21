@@ -8,10 +8,12 @@ const defaultResponse = {
 	controller: ''
 }
 
+const tableName = 'test-table'
+
 const table: APIResponse = reactive(defaultResponse)
 function getTable(): any {
 	try {
-		fetch('http://localhost:3001/testTable')
+		fetch(`http://localhost:3001/${tableName}`)
 			.then(response => response.json())
 			.then(json => table.data = json.data)
 	} catch (error) {
@@ -23,7 +25,7 @@ async function createData(data: string) {
 	if (!data) return
 
 	try {
-		const response = await fetch('http://localhost:3001/testTable',{
+		const response = await fetch(`http://localhost:3001/${tableName}`,{
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -41,7 +43,7 @@ let retrievedData:Row = reactive({ id: 0, data: '' })
 async function readData(id: NumberInput) {
 	if (id === '') return
 	try {
-		const response = await fetch(`http://localhost:3001/testTable/${id}`, {
+		const response = await fetch(`http://localhost:3001/${tableName}/${id}`, {
 			method: 'GET'
 		})
 		const data:APIResponse = await response.json()
@@ -59,7 +61,7 @@ async function updateRow(id: NumberInput , data: string) {
 	if (id === '' || data === '') return
 
 	try {
-		const response = await fetch('http://localhost:3001/testTable',{
+		const response = await fetch(`http://localhost:3001/${tableName}`,{
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'
@@ -77,7 +79,7 @@ async function deleteRow(id: number | undefined) {
 	if (id === undefined) return
 
 	try {
-		const response = await fetch('http://localhost:3001/testTable',{
+		const response = await fetch(`http://localhost:3001/${tableName}`,{
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json'
