@@ -7,6 +7,7 @@ import {
 	onMounted
 } from 'vue'
 
+onMounted(() => { api.getTableColumns() })
 onMounted(() => { api.getTable() })
 
 const rowInput = ref()
