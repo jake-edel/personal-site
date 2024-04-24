@@ -29,8 +29,8 @@ const updatedElementValue = ref('')
 </script>
 
 <template>
-	<div id="dbtest-container">
-		<div id="database-controls">
+	<div class="dbtest-container">
+		<div class="database-controls">
 			<button @click="createRow(newRowData)">
 				Create Row
 			</button>
@@ -72,11 +72,11 @@ const updatedElementValue = ref('')
 </template>
 
 <style scoped lang="scss">
-#dbtest-container {
+.dbtest-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	#database-controls {
+	.database-controls {
 		margin-bottom: 16px;
 		display: grid;
 		grid-template-columns: $spacing-xxl $spacing-xxl $spacing-xxl;
