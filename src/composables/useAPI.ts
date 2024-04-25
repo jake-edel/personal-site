@@ -10,6 +10,20 @@ const defaultResponse = {
 
 const tableName = 'test-table'
 
+async function getTableColumns () {
+	try {
+		const response = await fetch(`http://localhost:3001/${tableName}/columns`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+		})
+		console.log(await response.json())
+	} catch (error) {
+		console.error(error)
+	}
+}
+
 const table: APIResponse = reactive(defaultResponse)
 function getTable(): void {
 	try {
@@ -95,6 +109,7 @@ async function deleteRow(id: number | undefined): Promise<void> {
 
 export {
 	getTable,
+	getTableColumns,
 	createData,
 	readData,
 	updateRow,
