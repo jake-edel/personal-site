@@ -26,6 +26,10 @@ const lastElementId = computed(() => api.table?.data[api.table.data.length - 1].
 const updatedElementId = ref(0)
 const updatedElementValue = ref('')
 
+function  toSentenceCase (string: string) {
+	return string[0].toUpperCase() + string.slice(1)
+}
+
 </script>
 
 <template>
@@ -51,7 +55,7 @@ const updatedElementValue = ref('')
 				:for="`${column}-input`"
 				:class="`${column}-label`"
 				:style="{gridColumn: index + 2}">
-				{{ column[0].toUpperCase() + column.slice(1) }}
+				{{ toSentenceCase(column) }}
 			</label>
 			<input
 				v-model="updatedElementId"
@@ -66,7 +70,7 @@ const updatedElementValue = ref('')
 		</div>
 		<table>
 			<tr v-if="columns" >
-				<th v-for="column in columns">{{ column[0].toUpperCase() + column.slice(1) }}</th>
+				<th v-for="column in columns">{{ toSentenceCase(column) }}</th>
 			</tr>
 			<tr v-if="api.table" v-for="row in api.table.data">
 				<td>{{ row.id }}</td>
