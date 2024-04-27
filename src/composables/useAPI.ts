@@ -10,7 +10,7 @@ const defaultResponse = {
 
 const tableName = 'test-table'
 
-async function getTableColumns () {
+async function getTableColumns (): Promise<string[] | undefined> {
 	try {
 		const response = await fetch(`http://localhost:3001/${tableName}/columns`, {
 			method: 'GET',
@@ -18,7 +18,9 @@ async function getTableColumns () {
 				'Content-Type': 'application/json'
 			},
 		})
-		console.log(await response.json())
+		const columns = await response.json()
+		console.log(columns)
+		return columns.data
 	} catch (error) {
 		console.error(error)
 	}
