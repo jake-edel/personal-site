@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import * as api from '@/composables/useAPI'
-import type { Row } from '@/definitions/apiTypes';
 import {
-	ref, 
+	ref,
 	computed,
 	onMounted
 } from 'vue'
 
-onMounted(() => { api.getTableColumns() })
+let columns = ref<string[] | undefined>([])
+onMounted(async () => { columns.value = await api.getTableColumns() })
 onMounted(() => { api.getTable() })
 
 const rowInput = ref()
@@ -26,7 +26,6 @@ const lastElementId = computed(() => api.table?.data[api.table.data.length - 1].
 const updatedElementId = ref(0)
 const updatedElementValue = ref('')
 
-
 </script>
 
 <template>
@@ -44,10 +43,16 @@ const updatedElementValue = ref('')
 				Read Row
 			</button>
 			<input v-model="readElementId" @keyup.enter="api.readData(readElementId)" type="number">
-			| {{ api.retrievedData.data }} |
-			<button @click="api.updateRow(updatedElementId, updatedElementValue)">
+			{{ api.retrievedData.data }}
+			<button @click="api.updateRow(updatedElementId, updatedElementValue)" class="update-btn">
 				Update Row
 			</button>
+			<label v-for="column, index in columns"
+				:for="`${column}-input`"
+				:class="`${column}-label`"
+				:style="{gridColumn: index + 2}">
+				{{ column[0].toUpperCase() + column.slice(1) }}
+			</label>
 			<input
 				v-model="updatedElementId"
 				class="id-input"
@@ -60,9 +65,8 @@ const updatedElementValue = ref('')
 			</button>
 		</div>
 		<table>
-			<tr>
-				<th>ID</th>
-				<th>Data</th>
+			<tr v-if="columns" >
+				<th v-for="column in columns">{{ column[0].toUpperCase() + column.slice(1) }}</th>
 			</tr>
 			<tr v-if="api.table" v-for="row in api.table.data">
 				<td>{{ row.id }}</td>
@@ -78,6 +82,7 @@ const updatedElementValue = ref('')
 	flex-direction: column;
 	align-items: center;
 	.database-controls {
+		color: black;
 		margin-bottom: 16px;
 		display: grid;
 		grid-template-columns: $spacing-xxl $spacing-xxl $spacing-xxl;
@@ -88,6 +93,12 @@ const updatedElementValue = ref('')
 		width: fit-content;
 		button {
 			grid-column: 1
+		}
+		.input-labels {
+			grid-row: 3
+		}
+		.update-btn {
+			grid-row: 4;
 		}
 	}
 	table {
