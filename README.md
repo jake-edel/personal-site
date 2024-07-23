@@ -1,8 +1,6 @@
 # Journal || Scrapbook || Whiteboard || Mind Dump
 
-A personal site for journaling, documenting, learning
-
-Work in progress
+A sandbox site for  learning
 
 Ideas include...
     - Logs for writing
@@ -16,7 +14,7 @@ Platform / Playground for expanding dev skills
     - Vue
     - Typescript
     - Jest
-    - Cypress
+    - Testcafe
     - API / DB for media
 
 # Begin create-vue boilerplate
