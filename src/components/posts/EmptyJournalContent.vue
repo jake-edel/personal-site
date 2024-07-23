@@ -1,5 +1,5 @@
 <template>
 	<div>
-		Emptzxy Journal Content
+		Empty Content
 	</div>
 </template>
